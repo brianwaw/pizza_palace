@@ -1,0 +1,23 @@
+{% extends 'pizzas/base.html' %}
+
+{% block title %}toppings{% endblock %}
+
+
+{% block extra_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+  <h2>{{pizza.name}} Toppings</h2>
+  <br>
+  <ul>
+      {% for topping in pizza.topping.all %}
+        <li>{{topping.name}}</li>
+      {% endfor %}
+  </ul>
+
+  <a href="{% url 'pizzas:home' %}">Back to Pizzas</a>
+
+{% endblock %}
+

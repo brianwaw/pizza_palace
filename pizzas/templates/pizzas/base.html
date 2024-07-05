@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <h1>Pizza Palace</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'pizzas:home' %}">Home</a></li>
+                <li><a href="{% url 'pizzas:contacts' %}">Contacts</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Pizza Palace. All rights reserved.</p>
+    </footer>
+</body>
+</html>

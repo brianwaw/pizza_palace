@@ -1,0 +1,23 @@
+{% extends 'pizzas/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+<!--{% load static %}-->
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h2>Home</h2>
+    <p>Welcome to the best pizza place in town! Explore our delicious menu and enjoy the best pizza experience.</p>
+    <section>
+        <h3>Our Specials</h3>
+        <ul>
+            {% for pizza in all_pizzas %}
+                <li><a href="{% url 'pizzas:topping' pizza_name=pizza.name %}">{{pizza.name}}</a> - {{pizza.description}}</li>
+
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
