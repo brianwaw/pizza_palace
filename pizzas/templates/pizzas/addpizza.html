@@ -1,0 +1,34 @@
+{% extends 'pizzas/base.html' %}
+
+{% block title %}Add Pizza{% endblock %}
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/addpizza.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h2>Add Pizza</h2>
+
+    <form action="{% url 'pizzas:addpizza' %}" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Add Pizza</button>
+    </form>
+
+    <p>Updated list of all pizzas</p>
+    <ul>
+        {% for pizza in all_pizza %}
+            <li>{{pizza}}</li>
+        {% endfor %}
+    </ul>
+
+
+
+{% endblock %}
+
+
+
+
+

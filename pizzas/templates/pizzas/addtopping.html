@@ -1,0 +1,21 @@
+{% extends 'pizzas/base.html' %}
+
+{% block title %}Add Topping{% endblock %}
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/addtopping.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h2>Add Toppings</h2>
+
+    <form action="{% url 'pizzas:addtopping' %}" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Add Topping</button>
+    </form>
+
+
+{% endblock %}
