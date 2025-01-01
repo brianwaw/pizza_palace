@@ -28,7 +28,7 @@ class ToppingView(DetailView):
     context_object_name = 'pizza'
 
     def get_object(self):
-        pizza_name = self.kwargs.get('pizza_name')
+        pizza_name = self.kwargs.get('pizza_name')# added all this mumble  jumble
         
         return Pizza.objects.filter(name=pizza_name).first()
 
