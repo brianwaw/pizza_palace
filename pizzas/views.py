@@ -2,7 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Pizza, Topping
 from .forms import AddPizzaForm, AddToppingForm
 
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+
+from django.views.generic import ListView, DetailView, CreateView
 # Create your views here.
 
 
@@ -49,6 +51,13 @@ def addpizza(request):
     context = {'all_pizza': all_pizza, 'form': form}
 
     return render(request, 'pizzas/addpizza.html', context)
+
+
+class AddPizza(CreateView):
+    form_class = AddPizzaForm
+    template_name = 'pizzas/addpizza.html'
+    context_object_name = 'all_pizza'    
+    success_url = reverse_lazy('pizzas:addpizza')
 
 
 def addtopping(request):
