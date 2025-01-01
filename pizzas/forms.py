@@ -9,8 +9,7 @@ class AddPizzaForm(forms.ModelForm):
 
 
 class AddToppingForm(forms.ModelForm):
-    pizza = forms.ModelChoiceField(queryset=Pizza.objects.all()
-                                   , to_field_name="name", empty_label="Select a Pizza")
+    pizza = forms.ModelChoiceField(queryset=Pizza.objects.all(), to_field_name="name", empty_label="Select a Pizza")
 
     class Meta:
         model = Topping

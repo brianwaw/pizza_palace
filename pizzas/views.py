@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Pizza
+from .models import Pizza, Topping
 from .forms import AddPizzaForm, AddToppingForm
+
+from django.views.generic import ListView, DetailView
 # Create your views here.
 
 
@@ -9,12 +11,26 @@ def home_view(request):
     context = {'all_pizzas': all_pizzas}
     return render(request, 'pizzas/home.html', context)
 
+class HomeView(ListView):
+    model = Pizza
+    template_name = 'pizzas/home.html'
+    context_object_name = 'all_pizzas'
+
 
 def topping_view(request, pizza_name):
     pizza = get_object_or_404(Pizza, name__iexact=pizza_name)
     context = {'pizza': pizza}
     return render(request, 'pizzas/topping.html', context)
 
+class ToppingView(DetailView):
+    model = Pizza
+    template_name = 'pizzas/topping.html'
+    context_object_name = 'pizza'
+
+    def get_object(self):
+        pizza_name = self.kwargs.get('pizza_name')
+        
+        return Pizza.objects.filter(name=pizza_name).first()
 
 def contacts_view(request):
     return render(request, 'pizzas/contacts.html')
